@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-class Index
+class Index extends AbstractController
 {
+    /**
+     * @Route("/", name="home")
+     */
     public function indexPage(): Response
     {
-        $welcome = "Welcome to Totally Not Netflix!";
-        $checklist = "Check our movies, place your rent and we'll deliver them to your home!";
-
-        return new Response(
-            '<html lang="en"><body><h2>'.$welcome.'</h2><p>'.$checklist.'</p></body>'
-        );
+        return $this->render('index/index.html.twig');
     }
 }
