@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Totally Not Netflix{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Original Title</th>
+                <th>Title Display</th>
+                <th>Is Adult?</th>
+                <th>Plot</th>
+                <th>Release Date</th>
+                <th>Runtime (Minutes)</th>
+                <th>Stock</th>
+                <th>Offer Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+                <tr>
+                    <td>
+                        {{ movie.originalTitle }}
+                    </td>
+                    <td>
+                        {% if movie.titleDisplay != null %}
+                            {{ movie.titleDisplay }}
+                        {% else %}
+                            {{ movie.originalTitle }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if movie.isAdult %}
+                            YES
+                        {% else %}
+                            NO
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ movie.plot }}
+                    </td>
+                    <td>
+                        {{ movie.releaseDate |date('d-m-Y') }}
+                    </td>
+                    <td>
+                        {{ movie.runtimeMinutes }}
+                    </td>
+                    <td>
+                        {{ movie.stock }}
+                    </td>
+                    <td>
+                        {{ movie.offerType }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
