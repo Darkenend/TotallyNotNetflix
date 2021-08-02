@@ -65,6 +65,11 @@ class Movie
      */
     private $rents;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $idIMDB;
+
     public function __construct()
     {
         $this->rents = new ArrayCollection();
@@ -194,6 +199,18 @@ class Movie
         if ($this->rents->removeElement($rent)) {
             $rent->removeIdMovie($this);
         }
+
+        return $this;
+    }
+
+    public function getIdIMDB(): ?string
+    {
+        return $this->idIMDB;
+    }
+
+    public function setIdIMDB(string $idIMDB): self
+    {
+        $this->idIMDB = $idIMDB;
 
         return $this;
     }

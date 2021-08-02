@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% set img_code = [ 'img/posters/', movie.id, '.jpg' ] | join %}
+{% block body %}
+    <h2>
+        {{ movie.titleDisplay }}
+    </h2>
+    <h3>
+        ({{ movie.originalTitle }})
+    </h3>
+    <hr>
+    <i>{{ movie.releaseDate |date('Y') }} - {{ movie.runtimeMinutes }} min. - <a href="https://www.imdb.com/title/{{ movie.idIMDB }}/">IMDb</a></i>
+    <br>
+    <br>
+    <img src="{{ asset(img_code) }}" height="600" alt="{{ movie.titleDisplay }} Poster">
+    <hr>
+    <p>
+        {{ movie.plot }}
+    </p>
+    <b>
+        Availability: {{ movie.stock }}
+    </b>
+    {% if movie.stock > 0 %}
+        <br>
+        <a>
+            Rent this Movie
+        </a>
+    {% endif %}
+    <br>
+    <a href="{{ path('movies') }}">
+        Back to Movies
+    </a>
+{% endblock %}
+
+{% block title %}
+    Totally Not Netflix | {{ movie.titleDisplay }}
+{% endblock %}
+

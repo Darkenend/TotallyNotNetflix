@@ -20,7 +20,9 @@
             {% for movie in movies %}
                 <tr>
                     <td>
-                        {{ movie.originalTitle }}
+                        <a href="{{ path('movie_info', {'id': movie.id}) }}">
+                            {{ movie.originalTitle }}
+                        </a>
                     </td>
                     <td>
                         {% if movie.titleDisplay != null %}
