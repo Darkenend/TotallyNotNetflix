@@ -25,15 +25,18 @@
     <b>
         Availability: {{ movie.stock }}
     </b>
+    <br>
     {% if movie.stock > 0 %}
-        <br>
-        <a>
-            Rent this Movie
+        <a href="{{ path('rent', {'id': movie.id}) }}">
+            <button>
+                Rent this Movie
+            </button>
         </a>
     {% endif %}
-    <br>
     <a href="{{ path('movies') }}">
-        Back to Movies
+        <button>
+            Back to Movies
+        </button>
     </a>
 {% endblock %}
 

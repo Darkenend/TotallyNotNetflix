@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Totally Not Netflix | Renting{% endblock %}
+
+{% block body %}
+    <h2>
+        Renting
+    </h2>
+    <p>
+        You're renting the following movie: {{ movie.titleDisplay }}
+    </p>
+    <p>
+        The price breakdown goes as follows:
+    </p>
+    <table>
+        <tr>
+            <td>
+                Base Cost
+            </td>
+            <td>
+                {{ rentcost.Base }} €
+            </td>
+        </tr>
+        <tr>
+            <td>
+                50% Discount?
+            </td>
+            <td>
+                {{ rentcost.HalfDiscount }} €
+            </td>
+        </tr>
+        <tr>
+            <td>
+                20% Discount? (Premium)
+            </td>
+            <td>
+                {{ rentcost.TwentyDiscount }} €
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shipping
+            </td>
+            <td>
+                {{ rentcost.Shipping }} €
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Cost
+            </th>
+            <th>
+                {{ rentcost.Total }} €
+            </th>
+        </tr>
+    </table>
+    <hr>
+    <button>
+        Rent Movie
+    </button>
+    <a href="{{ path('movie_info', {'id': movie.id}) }}">
+        <button>
+            Go Back to Movie Information
+        </button>
+    </a>
+{% endblock %}
