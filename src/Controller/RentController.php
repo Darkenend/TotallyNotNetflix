@@ -75,26 +75,33 @@ class RentController extends AbstractController
         $data = new RentDataHelper();
         $form = $this->createForm(ReturnRentChooseType::class, $data);
         $form->handleRequest($request);
+        $valid = false;
         if ($form->isSubmitted() && $form->isValid())
         {
+            $valid = true;
             $rent = $_POST['return_rent_choose']['rent'];
-            return $this->render('rent/returnrent.html.twig', ['rent' => $rent, 'form' => $form->createView()]);
+            return $this->render('rent/returnrentmenu.html.twig', ['rent' => $rent, 'form' => $form->createView(), 'valid' => $valid]);
         }
-        return $this->render('rent/returnrentmenu.html.twig', ['form' => $form->createView()]);
+        return $this->render('rent/returnrentmenu.html.twig', ['form' => $form->createView(), 'valid' => $valid]);
     }
 
     /**
-     * @Route("/returnrent", name="returnrent")
+     * @Route("/returningrent/{rent}", name="returningrent")
      */
     public function returnRent(Rent $rent, Request $request)
     {
+        $newRent = $rent;
         $entityManager = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ReturnRentType::class, $rent, ['method' => 'PUT']);
+        $form = $this->createForm(ReturnRentType::class, $rent);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            $rent->setActualReturnDate(new DateTime('today'));
-            $rent->calculateDelayPrice(self::DELAYDAY_COST);
+            $formdata = $form->getData();
+            // Form Get Data isn't nice.
+            $newRent->setActualReturnDate($formdata->getActualReturnDate());
+            $newRent->calculateDelayPrice(self::DELAYDAY_COST);
+            foreach ($newRent->getIdMovie() as $movie)
+                $movie->setStock($movie->getStock()+1);
             $entityManager->persist($rent);
             $entityManager->flush();
             return $this->render('rent/rentreturned.html.twig', ['rent' => $rent]);
