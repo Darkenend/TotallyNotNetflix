@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-{% set img_code = [ 'img/posters/', movie.id, '.jpg' ] | join %}
+{# This is a local alternative, but let's use the API to fetch posters better #}
+{# {% set img_code = [ 'img/posters/', movie.id, '.jpg' ] | join %} #}
+{#  #}
 {% block body %}
     <h2>
         {{ movie.titleDisplay }}
@@ -11,7 +13,11 @@
     <i>{{ movie.releaseDate |date('Y') }} - {{ movie.runtimeMinutes }} min. - <a href="https://www.imdb.com/title/{{ movie.idIMDB }}/">IMDb</a></i>
     <br>
     <br>
-    <img src="{{ asset(img_code) }}" height="600" alt="{{ movie.titleDisplay }} Poster">
+    {% if poster_url == "poster_not_available" %}
+        <img src="{{ asset('img/posternotavailable.jpg') }}" alt="No Poster Available">
+    {% else %}
+        <img src="{{ poster_url }}" alt="{{ movie.titleDisplay }} Poster">
+    {% endif %}
     <hr>
     <p>
         {{ movie.plot }}
