@@ -203,7 +203,7 @@ class Rent
 
     public function calculateDelayPrice(float $delayday_cost)
     {
-        $deltaDays = (int) date_diff($this->getReturnDate(),  $this->getActualReturnDate());
+        $deltaDays = (int) date_diff($this->getReturnDate(),  $this->getActualReturnDate())->format('d');
         if ($deltaDays > 0)
         {
             $this->setIsDelayed(true);

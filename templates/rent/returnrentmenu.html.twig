@@ -1,10 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <a href="{{ path('movies') }}">
+        <button>
+            Back to Movies
+        </button>
+    </a>
     <h2>
-        Rental Return Menu
+        Rental Return Menu {% if valid %} | Chosen Rental{% endif %}
     </h2>
-{{ form(form) }}
+    {% if valid %}
+        <a href="{{ path('returningrent', { 'rent': rent }) }}">
+            <button>
+                Return Rent
+            </button>
+        </a>
+    {% else %}
+        {{ form(form) }}
+    {% endif %}
 {% endblock %}
 
 {% block title %}

@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
         $movie_3->setPlot("A S.W.A.T. team becomes trapped in a tenement run by a ruthless mobster and his army of killers and thugs.");
         $movie_3->setReleaseDate(DateTime::createFromFormat('d/m/Y', '23/3/2012'));
         $movie_3->setRuntimeMinutes(101);
-        $movie_3->setStock(1);
+        $movie_3->setStock(0);
         $movie_3->setOfferType(OfferTypesEnum::None);
         $movie_3->setIdIMDB("tt1899353");
         $movie_4 = new Movie();
