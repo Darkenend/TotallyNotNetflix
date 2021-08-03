@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>
+        Movie rental #{{ rentID }} done!
+    </h2>
+    <p>
+        Your rental has been completed, tomorrow you'll have your movie(s) and be sure to return it in 2 days, or you'll
+        pay 1.25€ per day and permovie delayed.
+    </p>
+    <table>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Title
+            </th>
+        </tr>
+        {% for movie in movies %}
+            <tr>
+                <td>
+                    {{ movie.id }}
+                </td>
+                <td>
+                    {{ movie.titleDisplay }} ({{ movie.originalTitle }})
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    <a href="{{ path('movies') }}">
+        <button>
+            Back to all Movies
+        </button>
+    </a>
+{% endblock %}
+
+{% block title %}
+    Totally Not Netflix | Movie Rented!
+{% endblock %}
+

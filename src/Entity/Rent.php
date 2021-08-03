@@ -195,4 +195,19 @@ class Rent
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getId().". ".$this->getIdClient()->getName()." ".$this->getIdClient()->getLastName()." (".$this->getDateRent()->format('d/m/Y').")";
+    }
+
+    public function calculateDelayPrice(float $delayday_cost)
+    {
+        $deltaDays = (int) date_diff($this->getReturnDate(),  $this->getActualReturnDate());
+        if ($deltaDays > 0)
+        {
+            $this->setIsDelayed(true);
+            $this->setDelayPrice(count($this->getIdMovie()) * $delayday_cost);
+        }
+    }
 }

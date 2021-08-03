@@ -27,9 +27,9 @@
     </b>
     <br>
     {% if movie.stock > 0 %}
-        <a href="{{ path('rent', {'id': movie.id}) }}">
+        <a href="{{ path('rentmenu') }}">
             <button>
-                Rent this Movie
+                Rent Menu
             </button>
         </a>
     {% endif %}

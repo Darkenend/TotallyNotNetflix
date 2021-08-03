@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Totally Not Netflix | Renting{% endblock %}
+{% block title %}
+    Totally Not Netflix | Renting
+{% endblock %}
 
 {% block body %}
     <h2>
         Renting
     </h2>
     <p>
-        You're renting the following movie: {{ movie.titleDisplay }}
+        Pricing for the following movie: {{ movie.titleDisplay }}
     </p>
     <p>
         The price breakdown goes as follows:
@@ -55,9 +57,11 @@
         </tr>
     </table>
     <hr>
-    <button>
-        Rent Movie
-    </button>
+    <a href="{{ path('rentmenu') }}">
+        <button>
+            Go to Rent Movie Menu
+        </button>
+    </a>
     <a href="{{ path('movie_info', {'id': movie.id}) }}">
         <button>
             Go Back to Movie Information

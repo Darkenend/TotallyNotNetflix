@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('movies') }}">
+        <button>
+            Back to all Movies
+        </button>
+    </a>
+    {{ form(form) }}
+{% endblock %}
+
+{% block title %}
+Totally Not Netflix | Rent Menu
+{% endblock %}
+
