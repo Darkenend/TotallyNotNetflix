@@ -6,3 +6,6 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+# Library Mappings so people don't necessarily have this and leads to issues
+/jsLibraryMappings.xml
