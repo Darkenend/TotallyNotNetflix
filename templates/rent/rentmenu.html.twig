@@ -1,12 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'nothome.html.twig' %}
 
-{% block body %}
-    <a href="{{ path('movies') }}">
-        <button>
-            Back to all Movies
-        </button>
-    </a>
-    {{ form(form) }}
+{% block extendedbody %}
+    <div class="container-fluid">
+        {{ form_start(form) }}
+        <div class="row">
+            {{ form_row(form.idClient, {
+                label: 'Client: '
+            }) }}
+        </div>
+        <div class="row">
+            {{ form_row(form.idMovie, {
+                label: 'Movies: '
+            }) }}
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.save) }}
+            </div>
+            <div class="col">
+                <a href="{{ path('movies') }}" class="btn btn-danger">
+                    Back to all Movies
+                </a>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
 {% endblock %}
 
 {% block title %}

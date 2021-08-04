@@ -1,26 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'nothome.html.twig' %}
 
 {% block title %}Totally Not Netflix | Movies{% endblock %}
 
-{% block body %}
-    <table>
-        <thead>
-            <tr>
-                <th>Original Title</th>
-                <th>Title Display</th>
-                <th>Is Adult?</th>
-                <th>Plot</th>
-                <th>Release Date</th>
-                <th>Runtime (Minutes)</th>
-                <th>Stock</th>
-                <th>Offer Type</th>
-            </tr>
-        </thead>
-        <tbody>
+{% block extendedbody %}
+    <div class="container-fluid">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Original Title</th>
+                    <th>Title Display</th>
+                    <th>Is Adult?</th>
+                    <th>Plot</th>
+                    <th>Release Date</th>
+                    <th>Runtime (Minutes)</th>
+                    <th>Stock</th>
+                    <th>Offer Type</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for movie in movies %}
                 <tr>
                     <td>
-                        <a href="{{ path('movie_info', {'id': movie.id}) }}">
+                        <a href="{{ path('movie_info', {'id': movie.id}) }}" class="link-light">
                             {{ movie.originalTitle }}
                         </a>
                     </td>
@@ -55,17 +56,16 @@
                     </td>
                 </tr>
             {% endfor %}
-        </tbody>
-    </table>
-    <hr>
-    <a href="{{ path('rentmenu') }}">
-        <button>
-            Rent Movies
-        </button>
-    </a>
-    <a href="{{ path('returnrent_menu') }}">
-        <button>
-            Return Rent
-        </button>
-    </a>
+            </tbody>
+        </table>
+        <br>
+        <div class="d-grid gap-2 d-md-block">
+            <a href="{{ path('rentmenu') }}" class="btn btn-primary">
+                Rent Movies
+            </a>
+            <a href="{{ path('returnrent_menu') }}" class="btn btn-primary">
+                Return Rent
+            </a>
+        </div>
+    </div>
 {% endblock %}

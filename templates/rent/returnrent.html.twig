@@ -1,15 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'nothome.html.twig' %}
 
-{% block body %}
-    <a href="{{ path('movies') }}">
-        <button>
+{% block extendedbody %}
+    <div class="container-fluid">
+        <h2>
+            Return Rent - Return Date
+        </h2>
+        {{ form(form) }}
+        <a href="{{ path('movies') }}" class="btn btn-danger">
             Back to Movies
-        </button>
-    </a>
-    <h2>
-        Return Rent - Return Date
-    </h2>
-{{ form(form) }}
+        </a>
+    </div>
 {% endblock %}
 
 {% block title %}

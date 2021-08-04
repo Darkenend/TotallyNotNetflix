@@ -1,38 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'nothome.html.twig' %}
 
-{% block body %}
-    <h2>
-        Movie rental #{{ rentID }} done!
-    </h2>
-    <p>
-        Your rental has been completed, tomorrow you'll have your movie(s) and be sure to return it in 2 days, or you'll
-        pay 1.25€ per day and permovie delayed.
-    </p>
-    <table>
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Title
-            </th>
-        </tr>
-        {% for movie in movies %}
-            <tr>
-                <td>
-                    {{ movie.id }}
-                </td>
-                <td>
-                    {{ movie.titleDisplay }} ({{ movie.originalTitle }})
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+{% block extendedbody %}
+    <div class="container-fluid">
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">Movie rental #{{ rentID }} done!</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Your rental has been completed, tomorrow you'll have your movie(s) and be sure to return it in 2 days, or you'll
+                    pay 1.25€ per day and per movie delayed.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <table class="table table-dark table-striped">
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                        </tr>
+                        {% for movie in movies %}
+                            <tr>
+                                <td>
+                                    {{ movie.id }}
+                                </td>
+                                <td>
+                                    {{ movie.titleDisplay }} ({{ movie.originalTitle }})
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <hr>
-    <a href="{{ path('movies') }}">
-        <button>
-            Back to all Movies
-        </button>
+    <a href="{{ path('movies') }}" class="btn btn-primary">
+        Back to all Movies
     </a>
 {% endblock %}
 

@@ -1,26 +1,26 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h2>
-        Rent #{{ rent.id }} has been returned
-    </h2>
-    {% if rent.isDelayed %}
-        <p>
-            Your delay means that you are gonna be charged {{ rent.delayPrice }} extra. Return them in time next time!
-        </p>
-    {% endif %}
-    <p>
-        We hope you enjoyed the movie(s)!
-    </p>
-    <hr>
-    <a href="{{ path('movies') }}">
-        <button>
-            Back to Movies
-        </button>
-    </a>
+{% block title %}
+Totally Not Netflix | Rent Returned
 {% endblock %}
 
-{% block title %}
-Totally Not Netflix | Rent Return
+{% extends 'nothome.html.twig' %}
+
+{% block extendedbody %}
+    <div class="container-fluid">
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">Rent #{{ rent.id }} has been returned</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">We hope you enjoyed the movie(s)!</p>
+                {% if rent.isDelayed %}
+                    <p class="lead mb-4">
+                        Your delay means that you are gonna be charged {{ rent.delayPrice }} extra. Return them in time next time!
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+        <a href="{{ path('movies') }}" class="btn btn-primary">
+            Back to all Movies
+        </a>
+    </div>
 {% endblock %}
 

@@ -1,20 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends 'nothome.html.twig' %}
 {% block title %}
     Totally Not Netflix | Index
 {% endblock %}
 {% block body %}
-    <h1>
-        Welcome to Totally Not Netflix!
-    </h1>
-    <p>
-        Check our movies, place your rent and we'll deliver them to your home!
-    </p>
-    <a href="{{ path('movies') }}">
-        <button>
-            Enter App
-        </button>
-    </a>
-<footer>
-    Made by Darkenend
-</footer>
+    <div class="container-fluid">
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">Welcome to Totally Not Netflix!</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Check our movies, place your rent and we'll deliver them to your home!</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="{{ path('movies') }}" class="btn btn-primary btn-lg px-4 gap-3">
+                        Enter App
+                    </a>
+                </div>
+            </div>
+        </div>
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                <p>
+                    Your movies next day, wherever you are.
+                </p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                Made by <cite title="Darkenend">Darkenend</cite>
+            </figcaption>
+        </figure>
+    </div>
 {% endblock %}

@@ -1,23 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'nothome.html.twig' %}
 
-{% block body %}
-    <a href="{{ path('movies') }}">
-        <button>
-            Back to Movies
-        </button>
-    </a>
-    <h2>
-        Rental Return Menu {% if valid %} | Chosen Rental{% endif %}
-    </h2>
-    {% if valid %}
-        <a href="{{ path('returningrent', { 'rent': rent }) }}">
-            <button>
+{% block extendedbody %}
+    <div class="container-fluid">
+        <h2>
+            Rental Return Menu {% if valid %} | Chosen Rental{% endif %}
+        </h2>
+        {% if valid %}
+            <a href="{{ path('returningrent', { 'rent': rent }) }}" class="btn btn-success">
                 Return Rent
-            </button>
+            </a>
+        {% else %}
+            {{ form(form) }}
+        {% endif %}
+        <a href="{{ path('movies') }}" class="btn btn-danger">
+            Back to Movies
         </a>
-    {% else %}
-        {{ form(form) }}
-    {% endif %}
+    </div>
 {% endblock %}
 
 {% block title %}

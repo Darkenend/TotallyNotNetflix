@@ -1,43 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'nothome.html.twig' %}
 {# This is a local alternative, but let's use the API to fetch posters better #}
 {# {% set img_code = [ 'img/posters/', movie.id, '.jpg' ] | join %} #}
 {#  #}
-{% block body %}
-    <h2>
-        {{ movie.titleDisplay }}
-    </h2>
-    <h3>
-        ({{ movie.originalTitle }})
-    </h3>
-    <hr>
-    <i>{{ movie.releaseDate |date('Y') }} - {{ movie.runtimeMinutes }} min. - <a href="https://www.imdb.com/title/{{ movie.idIMDB }}/">IMDb</a></i>
-    <br>
-    <br>
-    {% if poster_url == "poster_not_available" %}
-        <img src="{{ asset('img/posternotavailable.jpg') }}" alt="No Poster Available">
-    {% else %}
-        <img src="{{ poster_url }}" alt="{{ movie.titleDisplay }} Poster">
-    {% endif %}
-    <hr>
-    <p>
-        {{ movie.plot }}
-    </p>
-    <b>
-        Availability: {{ movie.stock }}
-    </b>
-    <br>
-    {% if movie.stock > 0 %}
-        <a href="{{ path('rentmenu') }}">
-            <button>
-                Rent Menu
-            </button>
-        </a>
-    {% endif %}
-    <a href="{{ path('movies') }}">
-        <button>
-            Back to Movies
-        </button>
-    </a>
+{% block extendedbody %}
+    <div class="container-fluid">
+        <div class="row">
+            <h2>
+                {{ movie.titleDisplay }} <small class="text-muted">({{ movie.originalTitle }})</small>
+            </h2>
+        </div>
+        <span class="badge bg-primary">{{ movie.releaseDate |date('Y') }}</span> <span class="badge bg-secondary">{{ movie.runtimeMinutes }} min.</span> <span class="badge bg-warning"><a href="https://www.imdb.com/title/{{ movie.idIMDB }}/" class="text-decoration-none text-dark">IMDb</a></span>
+        <hr>
+        <div class="row">
+            <div class="col-3">
+                {% if poster_url == "poster_not_available" %}
+                    <img src="{{ asset('img/posternotavailable.jpg') }}" alt="No Poster Available" class="img-fluid">
+                {% else %}
+                    <img src="{{ poster_url }}" alt="{{ movie.titleDisplay }} Poster" class="img-fluid">
+                {% endif %}
+            </div>
+            <div class="col">
+                <p>
+                    {{ movie.plot }}
+                </p>
+                <b>
+                    Availability: {{ movie.stock }}
+                </b>
+                <br>
+                <a href="{{ path('rentmenu') }}" class="btn btn-primary {% if movie.stock == 0 %} disabled{% endif %}">
+                    Rent Menu
+                </a>
+            </div>
+        </div>
+        <hr>
+    </div>
 {% endblock %}
 
 {% block title %}
